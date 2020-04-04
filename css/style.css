@@ -1,0 +1,535 @@
+@font-face {
+    font-family: pixel;
+    src: url("../fonts/pixel3.ttf");
+    /*font-style: normal;*/
+}
+
+@font-face {
+    font-family: pixel_bold;
+    src: url("../fonts/pixel3_bold.ttf");
+    /*font-style: normal;*/
+}
+
+
+html,body, footer, header{
+    font-family: pixel, sans-serif;
+}
+
+
+body{
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color: #373c4a;
+    color: #ffffff;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header{
+    background: #545454;
+    color: #ffffff;
+    padding-top: 5px;
+    min-height: 30px;
+    border-bottom: #434343 3px solid;
+}
+
+header a{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 28px;
+    padding: 0;
+}
+
+header li{
+
+    text-align: center;
+    margin: auto;
+    display:inline;
+    padding: 0 20px 0 20px;
+}
+
+header h2{
+
+    font-size: 24px;
+    margin: auto;
+    padding: 0;
+}
+
+header nav{
+    margin: auto;
+}
+
+header #menu{
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header a:hover{
+    color: #c2c2c2;
+    transition: 0.3s;
+}
+
+header a{
+    color: white;
+    transition: 0.3s;
+}
+
+header ul{
+    text-align: center;
+    margin: auto;
+    height: auto;
+    padding: 5px;
+}
+
+#selected{
+    margin: auto;
+    padding: 5px 5px 5px 5px;
+    background: #6b6b6b;
+}
+
+#showcase{
+    text-align: center;
+    height: 50vh;
+    margin: 0;
+    padding: 25vh 1vw 20vh 1vw;
+    background: url("../img/background.jpg") no-repeat fixed center;
+    border-bottom: #545454 10px solid;
+}
+
+#logo{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    font-size: 4.5vw;
+}
+
+#pixel_font{
+    font-family: pixel, sans-serif;
+
+}
+#boxes{
+    padding: 3vh 0 3vh 0;
+    margin-top: 20px;
+
+}
+
+.box{
+    float: left;
+    width: 25vw;
+    padding: 0.5vw;
+    text-align: center;
+    margin: auto;
+}
+
+.pixel_bold{
+    font-family: pixel_bold,sans-serif;
+}
+
+.menu_images{
+    height: 10vw;
+    width: 10vw;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.box_text{
+    display: block;
+    clear: both;
+    text-align: center;
+    width: 70%;
+}
+
+#boxes .box p {
+    margin: auto;
+    width: 70%;
+    clear: both;
+    float: none;
+}
+
+p.clear {
+    clear: both;
+}
+.menu_images:hover{
+    height: 11vw;
+    width: 11vw;
+    transition: 0.3s;
+}
+
+/*about page*/
+
+#showcase_about{
+    text-align: center;
+    margin: auto;
+    padding: 0;
+    border-bottom: #545454 10px solid;
+}
+
+#logo_about{
+    clear: both;
+    text-align: center;
+    width: 100vw;
+    margin: auto;
+    overflow: hidden;
+    font-size: 3vw;
+    background: #626262;
+}
+
+#table{
+    width: 50%;
+}
+
+#about_boxes{
+    padding: 3vh 0 3vh 0;
+    margin-top: 20px;
+}
+
+#about_boxes .container div{
+    padding-top: 60px;
+    padding-bottom: 77px;
+    margin: auto;
+    text-align: left;
+    width: 100%;
+}
+
+/*published games*/
+#logo_pg{
+    text-align: center;
+    width: 100vw;
+    margin: auto;
+    overflow: hidden;
+    font-size: 3vw;
+    background: #626262;
+    height: 15vw;
+    border-bottom: #545454 10px solid;
+    float: left;
+}
+
+.showcase_pg{
+    text-align: center;
+    margin: auto;
+    padding: 50px;
+    width: auto;
+    height: 5vw;
+
+}
+
+.pb_image{
+    float: left;
+    height: 10vw;
+    width: 10vw;
+    border-radius: 50%;
+    padding: 3vw;
+}
+
+#logo_pg p {
+    text-align: center;
+    font-size: 3vw;
+    height: 10vw;
+    padding: 3vw;
+    float: left;
+}
+
+#article{
+    padding: 5px 5px 80px;
+}
+
+.container_pg{
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container_screenshots{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.article_box{
+    padding: 1vw 1vw 0px;
+    float: left;
+    width: auto;
+}
+
+.article_box img{
+    height: 300px;
+    width: 300px;
+}
+
+.pg_box_text{
+    margin: auto;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    background: #6b6b6b;
+    width: 300px;
+}
+
+.article_box a{
+    text-decoration: none;
+    color: white;
+    opacity: 100%;
+    transition: 0.3s;
+}
+
+.article_box a:hover{
+    text-decoration: none;
+    color: white;
+    opacity: 70%;
+    transition: 0.3s;
+}
+
+
+/*Articles */
+#logo_pg_article{
+    text-align: center;
+    width: 99vw;
+    margin: auto;
+    overflow: hidden;
+    font-size: 3vw;
+    background: #626262;
+    height: 10vw;
+    border-bottom: #545454 10px solid;
+    float: left;
+}
+
+.article_text{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.article_scr{
+    margin: auto;
+    padding: 0.5vw;
+    float: left;
+    width: auto;
+}
+
+.article_scr img{
+    height: 70%;
+    width: 70%;
+}
+
+.article_scr_wide{
+    margin: auto;
+    padding: 30px 0 30px 0;
+    clear: both;
+    float: left;
+
+}
+
+.article_scr_wide img{
+    width: 60%;
+    height: 60%;
+}
+footer{
+    display: flex;
+    margin: auto;
+    background-color: #434343;    
+    padding: 2em 0;
+    flex-direction: column;
+    text-align: center;
+}
+form{
+    margin: 0 auto;
+    width: 65%;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.form-group-row{
+    display: flex;
+    justify-content: space-around;
+}
+.form-group input,
+.form-group-row input,
+.form-group textarea{
+    font-family: pixel, sans-serif;
+    background-color: #ccc;
+    padding: 0.6em;
+    border: 0;
+    border-radius: 0.25em;
+}
+.form-group button,
+.form-group-row button{
+    background-color:black;
+    color: white;
+    padding: 0.75em;
+    border: 5px solid #373c4a;
+}
+label{
+    padding-top: 0.5em;
+}
+label span{
+    color: red;
+}
+input:focus,
+textarea:focus{
+    outline: 5px solid #4f5d81;
+}
+.invalid-name,
+.invalid-email,
+.invalid-text{
+    display: none;
+}
+.invalidForm-name .invalid-name,
+.invalidForm-email .invalid-email,
+.invalidForm-text .invalid-text{
+    display: block;
+    color: red;
+}
+aside{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+.aside-content{
+    margin: 15% auto;
+    text-align: center;
+    width: 40%;
+    background-color: #ccc;
+    padding: 1em;
+    color: black;
+    position: relative;
+}
+.close {
+    position: absolute;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 1em;
+    top: -25%;
+    right: -2%;
+  }
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  aside.open{
+      display: block;
+  }
+  .Opinions h4{
+      margin-bottom: 0;
+      color: black;
+  }
+  .Opinions-Time{
+      color: #aaa;
+      font-size: 0.8em;
+  }
+  .Opinions-Url{
+    padding: 0;
+    margin: 0;
+    font-size: 0.8em;
+  }
+  .Opinions-Url a{
+      color: blue;
+
+  }
+  .Opinions-Text{
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    color: black;
+    padding: 0.25em;
+  }
+  .opinion{
+      background-color: #ddd;
+      width: 50%;
+      border-radius: 0.5em;
+      margin: 0 auto;
+      color: black;
+  }
+@media only screen and (max-width: 768px) {
+    .box {
+        float: none;
+        width: 90%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .menu_images{
+        height: 30vw;
+        width: 30vw;
+    }
+
+    .menu_images:hover{
+        height: 30vw;
+        width: 30vw;
+    }
+
+    #logo_pg{
+        text-align: center;
+        width: 100vw;
+        margin: auto;
+        overflow: hidden;
+        font-size: 3vw;
+        background: #626262;
+        height: 40vw;
+        border-bottom: #545454 10px solid;
+        clear: both;
+    }
+
+    .pb_image{
+        clear: both;
+        float: none;
+        padding: 5px;
+        height: 25vw;
+        width: 25vw;
+        border-radius: 50%;
+    }
+
+    #logo_pg p {
+        clear: both;
+        font-size: 4vw;
+        float: none;
+        padding: 5px;
+    }
+
+    .article_box{
+        margin: auto;
+        padding: 30px 0 30px 0;
+        float: none;
+        width: auto;
+    }
+
+    .article_scr{
+        margin: auto;
+        padding: 30px 0 30px 0;
+        float: none;
+        width: auto;
+    }
+
+    .pg_box_text{
+        margin: auto;
+        padding: 10px 0 10px 0;
+        text-align: center;
+        background: #6b6b6b;
+    }
+
+    /*.article_box p{
+        text-align: center;
+        width: 300px;
+        background: #6b6b6b;
+        clear: both;
+        float: none;
+    }*/
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Site about game development and showcasing my or someone else's games">
+    <meta name="keyword" content="games, game, game development, game news, new games, game engines">
+    <meta name="author" content="Tomáš Tóth">
+    <title>Game Development | Home</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<header>
+    <div id="menu">
+        <nav>
+            <ul>
+                <li><a href="index.html" id="selected">Home</a> </li>
+                <li><a href="about.html">About</a> </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="showcase">
+    <div id="logo">
+        <h1 id="pixel_font">Game Development</h1>
+    </div>
+</section>
+
+<!--odelovacia ciara alebo pripade piradanie form-input pre subscribe newsletter-->
+
+<section id="boxes">
+    <div class="container">
+        <div class="box">
+            <img class="menu_images" src="./img/book.png" alt="book_image" title="Beginner's guide">
+            <h3 class="pixel_bold">Beginner's guide</h3>
+            <p>Begginer's guide for those who are starting or want to make games professionally</p>
+        </div>
+        <div class="box">
+            <a href="published_games.html"><img class="menu_images" src="./img/pad.png" alt="gamepad_image" title="Published games"></a>
+            <h3 class="pixel_bold">Published games</h3>
+            <p>All my published games so far, on which I was working on</p>
+        </div>
+        <div class="box">
+            <img class="menu_images" src="./img/cog.png" alt="Cog_image" title="Game engines">
+            <h3 class="pixel_bold">Game engines</h3>
+            <p>Commonly used game engines, pros and cons of those types of games engines, etc.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-header">
+        <h2>Contact Us!</h2>
+    </div>
+    <form id="contactForm">
+        <div class="form-group">
+            <label for="inputName">Your Name: <span>*</span></label><input type="text" name="text" placeholder="Name" id="inputName" required>
+            <div class="invalid-name">Please dont send us blank Name :(</div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Your Email: <span>*</span></label><input type="email" name="email" placeholder="Email" id="inputEmail" required>
+            <div class="invalid-email">Please dont send us blank Email :(</div>
+        </div>        
+        <div class="form-group">
+            <label for="inputUrl" >Your Url: </label><input type="url" name="url" placeholder="Website" id="inputUrl">
+        </div>
+        <div class="form-group">
+            <label for="texty">Type here: <span>*</span></label><textarea id="texty" cols="30" rows="10" placeholder="Say something nice!" required></textarea>
+            <div class="invalid-text">Please dont send us blank textbox :(</div>
+        </div>
+        <div class="form-group">
+            <label for="GDPR1" class="custom">Check Yes for GDPR<input type="checkbox" id="GDPR1"></label>
+            <label for="rules" class="custom">Check YEs for Rules<span>*</span><input type="checkbox" id="rules" required></label>
+        </div>        
+        <div class="form-group-row">
+            <button type="submit">SUBMIT</button>
+            <button type="reset">RESET</button>
+        </div>
+    </form>
+    <div class="Opinions">
+        <h2>Your Opinions: </h2>
+        <div id="opcontainer">Loading...</div>
+        <script id="template" type="text/template">
+        <div class="opinion">
+            <h4>{{ name }}<i class="Opinions-Time">({{ date }})</i></h4>
+            <p class="Opinions-Url">Link: <a href="{{ url }}">{{ url }}</a></p>
+            <p class="Opinions-Text">{{{ text }}}</p>
+        </div>
+        </script>
+    </div>
+</footer>
+<aside id="Modal">
+    <div class="aside-content">
+        <span class="close" id="Modal-Close">&times;</span>
+        <p>You contacted us! Thanks.</p>
+        <p>We'll contact you as soon as possible.</p>
+    </div>
+</aside>
+<div>
+    <p>Tomáš Tóth, Copyright &copy; 2020</p>
+</div>
+<script src="js/mustache.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
