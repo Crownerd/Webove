@@ -1,2 +1,0 @@
-# Webove
-Stranka

@@ -1,60 +1,207 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Site about game development and showcasing my or someone else's games">
-    <meta name="keyword" content="games, game, game development, game news, new games, game engines">
-    <meta name="author" content="Tomáš Tóth">
-    <title>Game Development | Home</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="author" content="Stefan Korecko" />
+    <meta name="google-signin-client_id" content="1096637628570-m2evcr3kmbbkk9714nvrah7u7hcghsn3.apps.googleusercontent.com">
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet"
+          href="css/treesBlog.css"
+          media="screen" />
+
+
+    <title>My Blog about Trees and Other Things</title>
 </head>
 <body>
+<!--
+<header>
+    <h1>My Blog about Trees and Other Things</h1>
+
+
+<div class="menu">
+    <button id="menuTitle" onclick="displayOrHideMenu()">Menu</button>
+
+    <nav id="menuIts" class="menu mnHide">
+            <a href="#welcome">Welcome!</a>
+            <a href="#articles">Articles</a>
+            <a href="#opinions">Visitor opinions</a>
+            <a href="#addOpinion">Add your opinion</a>
+    </nav>
+
+</div>
+
+</header>
+-->
 
 <header>
+    <h1 id="logo">Game Development</h1>
+
     <div id="menu">
-        <nav>
+        <nav id="menuTitle">
             <ul>
-                <li><a href="index.html" id="selected">Home</a> </li>
-                <li><a href="about.html">About</a> </li>
+                <li><a href="#welcome">Welcome!</a></li>
+                <li><a href="#articles/1/10">Articles</a></li>
+                <li><a href="#opinions">Visitor opinions</a></li>
+                <li><a href="#addOpinion">Add your opinion</a></li>
+                <li><a href="#artInsert">Add article</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<section id="showcase">
-    <div id="logo">
-        <h1 id="pixel_font">Game Development</h1>
-    </div>
-</section>
 
-<!--odelovacia ciara alebo pripade piradanie form-input pre subscribe newsletter-->
 
-<section id="boxes">
-    <div class="container">
-        <div class="box">
-            <img class="menu_images" src="./img/book.png" alt="book_image" title="Beginner's guide">
-            <h3 class="pixel_bold">Beginner's guide</h3>
-            <p>Begginer's guide for those who are starting or want to make games professionally</p>
-        </div>
-        <div class="box">
-            <a href="published_games.html"><img class="menu_images" src="./img/pad.png" alt="gamepad_image" title="Published games"></a>
-            <h3 class="pixel_bold">Published games</h3>
-            <p>All my published games so far, on which I was working on</p>
-        </div>
-        <div class="box">
-            <img class="menu_images" src="./img/cog.png" alt="Cog_image" title="Game engines">
-            <h3 class="pixel_bold">Game engines</h3>
-            <p>Commonly used game engines, pros and cons of those types of games engines, etc.</p>
-        </div>
-    </div>
-</section>
+<main id="router-view">
+</main>
+
+
 
 <footer>
-    <div class="footer-header">
-        <h2>Contact Us!</h2>
+    Tomáš Tóth
+    (c) 2020
+</footer>
+
+<!--Templates for html, dynamically inserted by the router -->
+
+<script id="template-welcome" type="text/template">
+    <article class="container">
+        <h2>Welcome!</h2>
+
+        <div id="googleSignIn">
+            <div id="SignInButton"></div>
+            <div id="SignedIn">
+                You are signed in as <span id="userName"></span> <button onclick="signOut()" class="black-button">Odhlásiť sa / Sign Out</button>
+            </div>
+        </div>
+
+        <section id="about_boxes">
+            <div class="container">
+                <p>
+                    Site about game development and my road of developing my games.
+                </p>
+                <div>
+                    <p id="tables">
+                    <table id="table">
+                        <tr>
+                            <td class="pixel_bold">Name:</td>
+                            <td>Tomáš Tóth</td>
+                        </tr>
+                        <tr>
+                            <td class="pixel_bold">Email:</td>
+                            <td><a onclick="openMail()" style="text-decoration: underline">tomas.toth99@gmail.com</a></td>
+                        </tr>
+                        <tr>
+                            <td class="pixel_bold">Phone:</td>
+                            <td>+421 918 776 327</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </section>
+    </article>
+</script>
+
+<script id="template-articles" type="text/template">
+
+    <h2>Main Content</h2>
+    <p>
+        Displaying page {{currPage}} of {{pageCount}} pages.
+    </p>
+
+
+    <article class="container">
+        {{#articleList}}
+        {{#.}}
+        <h2><a href="{{detailLink}}">{{title}}</a></h2>
+        <p>
+            by {{author}}
+        </p>
+        {{/.}}
+        {{/articleList}}
+    </article>
+
+
+        {{#prevPage}}
+        <a href="#articles/{{prevPage}}/{{pageCount}}"><< Previous page</a>
+        {{/prevPage}}
+        {{#nextPage}}
+        <a href="#articles/{{nextPage}}/{{pageCount}}">Next page >></a>
+        {{/nextPage}}
+
+
+</script>
+
+<!--
+<script id="template-articles" type="text/template">
+
+   {{#.}}
+   <article class="container">
+       <h2>{{title}}</h2>
+       <p>
+           by {{author}}
+       </p>
+       <p>{{content}}0</p>
+   </article>
+   {{/.}}
+   <a href="#main/{{prevPage}}/{{pageCount}}">Next page</a>
+   <a href="#articlesPrev">Prev page</a>
+
+   <a href="#menuTitle" class="link">Back to the menu</a>
+
+</script>
+-->
+<script id="template-articles-error" type="text/template">
+
+    <article class="container">
+        <h2>Articles acquisition failed</h2>
+        <p>
+            {{errMessage}}
+        </p>
+        <a href="#menuTitle" class="link">Back to the menu</a>
+    </article>
+
+
+</script>
+
+<!--<script id="template-opinions" type="text/template">
+    <article  id="artOpinions">
+        <h2>Visitor Opinions</h2>
+        {{#.}}
+        <section>
+            <h3>{{name}} <i>{{created}}</i> <i>{{url}}</i></h3>
+            <i>{{email}}</i>
+            <p>{{comment}}</p>
+        </section>
+        {{/.}}
+        {{^.}}
+        <section>
+            Sorry, no opinions found.
+        </section>
+        {{/.}}
+        <footer  class="menuLink"><a href="#menuTitle">Back to the menu</a></footer>
+    </article>
+</script>
+-->
+
+<script id="template-opinions" type="text/template">
+    <article  class="container">
+    <h2>Visitor Opinions</h2>
+        {{#.}}
+    <div class="opinion">
+        <h4>{{ name }}<i class="Opinions-Time">({{ created }})</i></h4>
+        <p class="Opinions-Url">Link: <a href="{{ url }}">{{ url }}</a></p>
+        <p class="Opinions-Text">{{{ comment }}}</p>
     </div>
-    <form id="contactForm">
+        {{/.}}
+
+    <a href="#menuTitle" class="link">Back to the menu</a>
+    </article>
+</script>
+
+<script id="template-addOpinion" type="text/template">
+
+    <form id="contactForm" onsubmit="return processForm(event)">
         <div class="form-group">
             <label for="inputName">Your Name: <span>*</span></label><input type="text" name="text" placeholder="Name" id="inputName" required>
             <div class="invalid-name">Please dont send us blank Name :(</div>
@@ -62,7 +209,7 @@
         <div class="form-group">
             <label for="inputEmail">Your Email: <span>*</span></label><input type="email" name="email" placeholder="Email" id="inputEmail" required>
             <div class="invalid-email">Please dont send us blank Email :(</div>
-        </div>        
+        </div>
         <div class="form-group">
             <label for="inputUrl" >Your Url: </label><input type="url" name="url" placeholder="Website" id="inputUrl">
         </div>
@@ -73,35 +220,176 @@
         <div class="form-group">
             <label for="GDPR1" class="custom">Check Yes for GDPR<input type="checkbox" id="GDPR1"></label>
             <label for="rules" class="custom">Check YEs for Rules<span>*</span><input type="checkbox" id="rules" required></label>
-        </div>        
+        </div>
         <div class="form-group-row">
             <button type="submit">SUBMIT</button>
             <button type="reset">RESET</button>
         </div>
     </form>
-    <div class="Opinions">
-        <h2>Your Opinions: </h2>
-        <div id="opcontainer">Loading...</div>
-        <script id="template" type="text/template">
-        <div class="opinion">
-            <h4>{{ name }}<i class="Opinions-Time">({{ date }})</i></h4>
-            <p class="Opinions-Url">Link: <a href="{{ url }}">{{ url }}</a></p>
-            <p class="Opinions-Text">{{{ text }}}</p>
+
+
+
+
+    <!-- <article  id="artOpnFrm">
+        <h2>Your Opinion</h2>
+        <p>
+            Please, use the form below to state your opinion about this page.
+        </p>
+        <form id="opnFrm" onsubmit="return processOpnFrmData(event)">
+            <label for="nameElm">Your name:</label>
+            <input type="text" name="login" id="nameElm" size="20" maxlength="50" placeholder="Enter your name here" required />
+            <br><br>
+            <label for="opnElm">Your opinion:</label>
+            <textarea name="comment" id="opnElm" cols="50" rows="3" placeholder="Express your opinion here" required></textarea>
+            <br><br>
+            <input type="checkbox" id="willReturnElm" />
+            <label for="willReturnElm">I will definitely return to this page.</label>
+            <br><br>
+            <button type="submit">Send</button>
+        </form>
+        <footer  class="menuLink"><a href="#menuTitle">Back to the menu</a></footer>
+    </article> -->
+
+
+
+</script>
+
+<script id="template-article" type="text/template">
+    <article>
+        <h3>{{title}}</h3>
+        <p>
+            by {{author}}
+        </p>
+        {{#imageLink}}
+        <figure>
+            <img src="{{imageLink}}" alt="article figure" />
+        </figure>
+        {{/imageLink}}
+        <div>{{{content}}}</div>
+        <p>
+            Keywords:
+            {{tags}}
+        </p>
+
+        <h3>Comments</h3>
+        {{#comments}}
+        <div class="comment">
+            By <b>{{author}}</b>
+            <br>
+            <i>{{{text}}}</i>
         </div>
-        </script>
-    </div>
-</footer>
-<aside id="Modal">
-    <div class="aside-content">
-        <span class="close" id="Modal-Close">&times;</span>
-        <p>You contacted us! Thanks.</p>
-        <p>We'll contact you as soon as possible.</p>
-    </div>
-</aside>
-<div>
-    <p>Tomáš Tóth, Copyright &copy; 2020</p>
-</div>
+        {{/comments}}
+        {{^comments}}
+        No comments.
+        {{/comments}}
+        <br>
+        <div id="addCommentDiv">
+            <br>
+            <form id="addCommentForm">
+                <div>
+
+                    <h2>Add Comment</h2>
+                </div>
+                <div>
+
+                    <label for="author">Name:</label>
+                    <br>
+                    <input type="text" name="author" id="commentAuthor" class="black-button" size="50" required="" title="Type your name here" maxlength="100" placeholder="Your name">
+                </div>
+                <div class="artTextArea">
+                    <br>
+                    <label for="content">Comment:</label>
+                    <br>
+                    <textarea name="content" id="commentAdd" class="black-button" spellcheck="true" lang="sk" cols="50" rows="5" required="" title="Type your comment here" placeholder="Your comment"></textarea>
+                </div>
+                <div class="buttons">
+                    <button type="reset" id="cancelComment" class="black-button"  onclick="hideCommentForm()">Cancel</button>
+                    <button type="submit" id="sendComment" class="black-button"><a href="{{addCommLink}}">Submit</a></button>
+                </div>
+            </form>
+        </div>
+
+    </article>
+
+    <footer>
+        <a href="{{backLink}}" class="linkAsButton"><< Back</a>
+        <a href="{{editLink}}" class="linkAsButton">Edit</a>
+        <a href="{{deleteLink}}" class="linkAsButton">Delete</a>
+        <a href="#menuTitle" class="linkAsButton">Up to the menu</a>
+    </footer>
+
+</script>
+
+<script id="template-article-form" type="text/template">
+    <article>
+
+        <h2>{{formTitle}}</h2>
+        <br><br>
+
+        <form id="articleForm" onsubmit="return {{formSubmitCall}}">
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" class="black-button" value="{{author}}" size="50" title="Article author, max. length 100 characters." maxlength="100" placeholder="e.g. Ján Trieska" />
+            <br>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" class="black-button" value="{{title}}" size="50"  maxlength="100" pattern="\S[\S\s]*" required title="Article title, mandatory item, max. length: 100 characters, the first character must not be a space." placeholder="e.g. My story." />
+            <br>
+            <label for="imageLink">Image (url):</label>
+            <input type="url" name="imageLink" id="imageLink" value="{{imageLink}}" size="50" title="Image URL, max. length 100 characters." maxlength="100"/>
+            <br>
+            <label></label><button type="button" id="btShowFileUpload" onclick="showFileUpload()">Upload image</button>
+
+            <fieldset class="added hiddenElm" id="fsetFileUpload">
+                <legend>Image Upload</legend>
+                <input type="file" id="flElm" name="file" accept="image/jpeg, image/png"/>
+                <br />
+                <button type="button" id="btFileUpload" onclick="uploadImg('{{urlBase}}')">Send image to server</button>
+                <button type="button" id="btCancelFileUpload" onclick="cancelFileUpload()">Cancel uploading</button>
+            </fieldset>
+
+
+            <br>
+            <label for="content">Article content:</label>
+            <textarea
+                    class="black-button"
+                    name="content" id="content" spellcheck="true" lang="sk"
+                    cols="50" rows="20" required
+                    title="Article content, mandatory item, can be plain text or in HTML.">{{content}}</textarea>
+            <br>
+            <label for="tags">Keywords:</label>
+            <input  type="text" name="tags" id="tags" value="{{tags}}" size="50"
+                    title="Keyword list, comma separated." placeholder="e.g. village, drama" />
+
+            <br>
+            <br>
+            <button type="reset" class="black-button">
+                Reset Form
+            </button>
+            <button type="submit" class="black-button">
+                {{submitBtTitle}}
+            </button>
+
+        </form>
+
+    </article>
+
+    <footer>
+        <a href="{{backLink}}" class="linkAsButton"><< Back</a>
+        <a href="#menuTitle" class="linkAsButton">Up to the menu</a>
+    </footer>
+</script>
+
 <script src="js/mustache.min.js"></script>
-<script src="js/main.js"></script>
+
+<script src="js/mainMenu.js"></script>
+
+<script src="js/addOpinion.js"></script>
+
+<script src="js/handleArticleForms.js"></script>
+
+<script type="module" src="js/routerInit.js"></script>
+
+<script src="js/googleSignIn.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=startGSingIn" async defer></script>
+
 </body>
 </html>
