@@ -50,30 +50,42 @@ let contactForm = document.getElementById("contactForm");
 function processForm(event) {
     //1.prevent normal event (form sending) processing
     event.preventDefault();
-    var trimmed_text = document.getElementById("texty").value.trim();
-    trimmed_text = trimmed_text.replace(/\r?\n/g, '</br>');
-    var trimmed_obj = JSON.parse('{"name":"' + document.getElementById("inputName").value.trim() + '","email":"' + document.getElementById("inputEmail").value.trim() + '","url":"' + document.getElementById("inputUrl").value.trim() + '","comment":"' + trimmed_text + '","created":"' + new Date() + '"}');
+
+    const Name = document.getElementById("author").value.trim();
+    const Email = document.getElementById("inputEmail").value.trim();
+    const Url = document.getElementById("inputUrl").value.trim();
+    const Comment = document.getElementById("texty").value.trim();
+
+    const newOpinion =
+        {
+            name: Name,
+            email: Email,
+            url: Url,
+            comment: Comment,
+            created: new Date()
+        };
+
     //console.log(trimmed_obj);
-    if (trimmed_obj.name == "") {
+    if (newOpinion.name == "") {
         contactForm.classList.add("invalidForm-name");
         return;
     }
-    if (trimmed_obj.email == "") {
+    if (newOpinion.email == "") {
         contactForm.classList.add("invalidForm-email");
         return;
     }
-    if (trimmed_obj.text == "") {
+    if (newOpinion.text == "") {
         contactForm.classList.add("invalidForm-text");
         return;
     }
-
+/*
     let opinions = [];
 
     if (localStorage.myTreesComments) {
         opinions = JSON.parse(localStorage.myTreesComments);
     }
 
-    opinions.push(trimmed_obj);
+    opinions.push(newOpinion);
     localStorage.myTreesComments = JSON.stringify(opinions);
     window.alert("Your opinion has been stored. Look to the console");
     //console.log("New opinion added");
@@ -81,7 +93,42 @@ function processForm(event) {
 
     //contactForm.reset(); //resets the form
 
-    window.location.hash="#opinions";
+    window.location.hash="#opinions";*/
+    const postReqSettings = //an object wih settings of the request
+        {
+            method: 'POST',
+            headers: {
+                "X-Parse-Application-Id": "cUkl4g4awbFm1TYkQ270Qdv3O8YE8nf4oTNd8EZZ",
+                "X-Parse-REST-API-Key": "FbuCGpnB30pelBl0QH8PoWU5zON0XVsM8hnhwbBZ",
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(newOpinion)
+        };
+
+
+    const urlSend="https://parseapi.back4app.com/classes/opinion"
+
+    //3. Execute the request
+
+
+    fetch(urlSend, postReqSettings)
+        .then(response => {
+            if (response.ok) {
+                return Promise.resolve();
+            } else { //if we get server error
+                return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
+            }
+        })
+        .then( () => { //here we process the returned response data in JSON ...
+            console.log("Nový koment bol pridaný.");
+        })
+        .catch(error => { ////here we process all the failed promises
+            window.alert(`Nový koment sa nepodarilo uložiť na server. ${error}`);
+
+        })
+        .finally(() =>{
+            window.location.hash="#opinions";
+        });
 }
 
 function resetForm(event) {

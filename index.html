@@ -40,7 +40,7 @@
         <nav id="menuTitle">
             <ul>
                 <li><a href="#welcome">Welcome!</a></li>
-                <li><a href="#articles/1/10">Articles</a></li>
+                <li><a href="#articles/1/20" id="articleLink">Articles</a></li>
                 <li><a href="#opinions">Visitor opinions</a></li>
                 <li><a href="#addOpinion">Add your opinion</a></li>
                 <li><a href="#artInsert">Add article</a></li>
@@ -48,8 +48,6 @@
         </nav>
     </div>
 </header>
-
-
 
 <main id="router-view">
 </main>
@@ -59,6 +57,13 @@
 <footer>
     Tomáš Tóth
     (c) 2020
+
+    <div id="googleSignIn" class="container">
+        <div id="SignInButton"></div>
+        <div id="SignedIn">
+            Ste prihlásený ako (You are signed in as) <span id="userName"></span> <button onclick="signOut()" class="black-button">Odhlásiť sa / Sign Out</button>
+        </div>
+    </div>
 </footer>
 
 <!--Templates for html, dynamically inserted by the router -->
@@ -66,13 +71,6 @@
 <script id="template-welcome" type="text/template">
     <article class="container">
         <h2>Welcome!</h2>
-
-        <div id="googleSignIn">
-            <div id="SignInButton"></div>
-            <div id="SignedIn">
-                You are signed in as <span id="userName"></span> <button onclick="signOut()" class="black-button">Odhlásiť sa / Sign Out</button>
-            </div>
-        </div>
 
         <section id="about_boxes">
             <div class="container">
@@ -104,32 +102,41 @@
 
 <script id="template-articles" type="text/template">
 
-    <h2>Main Content</h2>
-    <p>
-        Displaying page {{currPage}} of {{pageCount}} pages.
-    </p>
+    <div class="container">
+        <h2>Main Content</h2>
+        <p>
+            Displaying page {{currPage}} of {{pageCount}} pages.
+        </p>
+    </div>
 
 
-    <article class="container">
+
+    <article class="container grayDiv1">
         {{#articleList}}
         {{#.}}
-        <h2><a href="{{detailLink}}">{{title}}</a></h2>
+
+            <h2 class="text-float"><a class="grayDiv2" href="{{detailLink}}">{{title}}</a></h2>
+
         <p>
             by {{author}}
         </p>
+        <div class="grayDiv">
+            {{content}}
+        </div>
+
         {{/.}}
         {{/articleList}}
     </article>
 
 
+    <div class="form-group-row">
         {{#prevPage}}
-        <a href="#articles/{{prevPage}}/{{pageCount}}"><< Previous page</a>
+        <a href="#articles/{{prevPage}}/{{pageCount}}" class="pageA"><< Previous page</a>
         {{/prevPage}}
         {{#nextPage}}
-        <a href="#articles/{{nextPage}}/{{pageCount}}">Next page >></a>
+        <a href="#articles/{{nextPage}}/{{pageCount}}" class="pageA">Next page >></a>
         {{/nextPage}}
-
-
+    </div>
 </script>
 
 <!--
@@ -189,7 +196,7 @@
     <h2>Visitor Opinions</h2>
         {{#.}}
     <div class="opinion">
-        <h4>{{ name }}<i class="Opinions-Time">({{ created }})</i></h4>
+        <h4>{{ name }}<i class="Opinions-Time"> ({{ created }})</i></h4>
         <p class="Opinions-Url">Link: <a href="{{ url }}">{{ url }}</a></p>
         <p class="Opinions-Text">{{{ comment }}}</p>
     </div>
@@ -202,22 +209,22 @@
 <script id="template-addOpinion" type="text/template">
 
     <form id="contactForm" onsubmit="return processForm(event)">
-        <div class="form-group">
-            <label for="inputName">Your Name: <span>*</span></label><input type="text" name="text" placeholder="Name" id="inputName" required>
+        <div class="form-group black-button">
+            <label for="author">Your Name: <span>*</span></label><input type="text" name="text" placeholder="Name" id="author" required>
             <div class="invalid-name">Please dont send us blank Name :(</div>
         </div>
-        <div class="form-group">
+        <div class="form-group black-button">
             <label for="inputEmail">Your Email: <span>*</span></label><input type="email" name="email" placeholder="Email" id="inputEmail" required>
             <div class="invalid-email">Please dont send us blank Email :(</div>
         </div>
-        <div class="form-group">
+        <div class="form-group black-button">
             <label for="inputUrl" >Your Url: </label><input type="url" name="url" placeholder="Website" id="inputUrl">
         </div>
-        <div class="form-group">
+        <div class="form-group black-button">
             <label for="texty">Type here: <span>*</span></label><textarea id="texty" cols="30" rows="10" placeholder="Say something nice!" required></textarea>
             <div class="invalid-text">Please dont send us blank textbox :(</div>
         </div>
-        <div class="form-group">
+        <div class="form-group black-button">
             <label for="GDPR1" class="custom">Check Yes for GDPR<input type="checkbox" id="GDPR1"></label>
             <label for="rules" class="custom">Check YEs for Rules<span>*</span><input type="checkbox" id="rules" required></label>
         </div>
@@ -255,17 +262,17 @@
 </script>
 
 <script id="template-article" type="text/template">
-    <article>
+    <article class="container">
         <h3>{{title}}</h3>
         <p>
             by {{author}}
         </p>
         {{#imageLink}}
         <figure>
-            <img src="{{imageLink}}" alt="article figure" />
+            <img src="{{imageLink}}" class="article_Image" alt="article figure" />
         </figure>
         {{/imageLink}}
-        <div>{{{content}}}</div>
+        <div class="grayDiv">{{{content}}}</div>
         <p>
             Keywords:
             {{tags}}
@@ -283,6 +290,39 @@
         No comments.
         {{/comments}}
         <br>
+
+        {{^isEmpty}}
+        <div class="addCommentDiv">
+          <h2>Comment page: {{commentPage}}</h2>
+        </div>
+
+        {{#full}}
+        <div class="form-group-row">
+            {{#commentPrevPage}}
+            <a class="pageA" href="#article/{{id}}/{{commentPrevPage}}/{{totalCommentPage}}"><< Previous comment page</a>
+            {{/commentPrevPage}}
+            {{#commentNextPage}}
+            <a class="pageA" href="#article/{{id}}/{{commentNextPage}}/{{totalCommentPage}}">Next comment page >></a>
+            {{/commentNextPage}}
+        </div>
+        {{/full}}
+        {{/isEmpty}}
+
+        <div class="form-group-row">
+        {{#isEmpty}}
+            <div class="addCommentDiv">
+                <h2>Comment page: {{commentPage}}</h2>
+            </div>
+            <div class="form-group-row">
+                {{#commentPrevPage}}
+                <a class="pageA" href="#article/{{id}}/{{commentPrevPage}}/{{totalCommentPage}}"><< Previous comment page</a>
+                {{/commentPrevPage}}
+            </div>
+            {{/isEmpty}}
+        </div>
+
+        <br>
+
         <div id="addCommentDiv">
             <br>
             <form id="addCommentForm">
@@ -290,21 +330,20 @@
 
                     <h2>Add Comment</h2>
                 </div>
-                <div>
-
+                <div class="form-group black-button">
                     <label for="author">Name:</label>
                     <br>
-                    <input type="text" name="author" id="commentAuthor" class="black-button" size="50" required="" title="Type your name here" maxlength="100" placeholder="Your name">
+                    <input type="text" name="author" id="author" class="black-button"  size="50" required="" title="Type your name here" maxlength="100" placeholder="Your name">
                 </div>
-                <div class="artTextArea">
+                <div class="artTextArea form-group black-button">
                     <br>
                     <label for="content">Comment:</label>
                     <br>
                     <textarea name="content" id="commentAdd" class="black-button" spellcheck="true" lang="sk" cols="50" rows="5" required="" title="Type your comment here" placeholder="Your comment"></textarea>
                 </div>
-                <div class="buttons">
-                    <button type="reset" id="cancelComment" class="black-button"  onclick="hideCommentForm()">Cancel</button>
-                    <button type="submit" id="sendComment" class="black-button"><a href="{{addCommLink}}">Submit</a></button>
+                <div class="buttons form-group-row">
+                    <button type="reset" id="cancelComment" class="pageA"  onclick="hideCommentForm()">Cancel</button>
+                    <button type="submit" id="sendComment" class="pageA"><a href="{{addCommLink}}">Submit</a></button>
                 </div>
             </form>
         </div>
@@ -312,10 +351,13 @@
     </article>
 
     <footer>
-        <a href="{{backLink}}" class="linkAsButton"><< Back</a>
-        <a href="{{editLink}}" class="linkAsButton">Edit</a>
-        <a href="{{deleteLink}}" class="linkAsButton">Delete</a>
-        <a href="#menuTitle" class="linkAsButton">Up to the menu</a>
+        <div class="form-group-row">
+            <a href="{{backLink}}" class="pageA"><< Back</a>
+            <a href="{{editLink}}" class="pageA">Edit</a>
+            <a href="{{deleteLink}}" class="pageA">Delete</a>
+            <a href="#menuTitle" class="pageA">Up to the menu</a>
+        </div>
+
     </footer>
 
 </script>
@@ -323,19 +365,26 @@
 <script id="template-article-form" type="text/template">
     <article>
 
-        <h2>{{formTitle}}</h2>
+        <h1 class="container">{{formTitle}}</h1>
         <br><br>
 
         <form id="articleForm" onsubmit="return {{formSubmitCall}}">
-            <label for="author">Author:</label>
-            <input type="text" name="author" id="author" class="black-button" value="{{author}}" size="50" title="Article author, max. length 100 characters." maxlength="100" placeholder="e.g. Ján Trieska" />
+            <div class="form-group black-button">
+                <label for="author">Author:</label>
+                <input type="text" name="author" id="author" class="black-button" value="{{author}}" size="50" title="Article author, max. length 100 characters." maxlength="100" placeholder="e.g. Ján Trieska" />
+            </div>
             <br>
+            <div class="form-group black-button">
             <label for="title">Title:</label>
             <input type="text" name="title" id="title" class="black-button" value="{{title}}" size="50"  maxlength="100" pattern="\S[\S\s]*" required title="Article title, mandatory item, max. length: 100 characters, the first character must not be a space." placeholder="e.g. My story." />
+            </div>
             <br>
+            <div class="form-group black-button">
             <label for="imageLink">Image (url):</label>
             <input type="url" name="imageLink" id="imageLink" value="{{imageLink}}" size="50" title="Image URL, max. length 100 characters." maxlength="100"/>
+            </div>
             <br>
+            <div class="form-group-row">
             <label></label><button type="button" id="btShowFileUpload" onclick="showFileUpload()">Upload image</button>
 
             <fieldset class="added hiddenElm" id="fsetFileUpload">
@@ -345,9 +394,10 @@
                 <button type="button" id="btFileUpload" onclick="uploadImg('{{urlBase}}')">Send image to server</button>
                 <button type="button" id="btCancelFileUpload" onclick="cancelFileUpload()">Cancel uploading</button>
             </fieldset>
-
+            </div>
 
             <br>
+            <div class="form-group black-button">
             <label for="content">Article content:</label>
             <textarea
                     class="black-button"
@@ -355,18 +405,24 @@
                     cols="50" rows="20" required
                     title="Article content, mandatory item, can be plain text or in HTML.">{{content}}</textarea>
             <br>
+            </div>
+            <div class="form-group black-button">
+
+
             <label for="tags">Keywords:</label>
             <input  type="text" name="tags" id="tags" value="{{tags}}" size="50"
                     title="Keyword list, comma separated." placeholder="e.g. village, drama" />
-
+            </div>
             <br>
             <br>
+            <div class="form-group-row">
             <button type="reset" class="black-button">
                 Reset Form
             </button>
             <button type="submit" class="black-button">
                 {{submitBtTitle}}
             </button>
+            </div>
 
         </form>
 
@@ -376,6 +432,13 @@
         <a href="{{backLink}}" class="linkAsButton"><< Back</a>
         <a href="#menuTitle" class="linkAsButton">Up to the menu</a>
     </footer>
+</script>
+
+<script>
+    function openMail(){
+        window.open('mailto:tomas.toth99@gmail.com?subject=Reakcia na Váš blog s názvom FireBalls 3D');
+    }
+
 </script>
 
 <script src="js/mustache.min.js"></script>

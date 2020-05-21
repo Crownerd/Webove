@@ -134,10 +134,10 @@ header ul{
     font-family: pixel_bold,sans-serif;
 }
 
-.menu_images{
-    height: 10vw;
-    width: 10vw;
-    border-radius: 50%;
+.article_Image{
+    height: 30vw;
+    width: 30vw;
+    border-radius: 0.2em;
     transition: 0.3s;
 }
 
@@ -364,10 +364,15 @@ form{
 }
 .form-group button,
 .form-group-row button{
-    background-color:black;
+    margin: 10px;
+    padding: 15px;
+    background: #6b6b6b;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 0.25em;
+    text-decoration: none;
     color: white;
-    padding: 0.75em;
-    border: 5px solid #373c4a;
 }
 label{
     padding-top: 0.5em;
@@ -484,6 +489,49 @@ do css #googleSignIn{
 .hiddenElm {display:none;}
 
 .showElm {display:block;}
+
+.grayDiv{
+    background: #2C303B;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 0.2em;
+}
+
+.grayDiv1{
+    background: #313642;
+    padding: 15px;
+}
+
+.text-float{
+    text-align: center;
+}
+
+.grayDiv2{
+    background: #2C303B;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 0.2em;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+#addCommentDiv{
+    display: flex;
+}
+
+.pageA{
+    margin: 30px;
+    padding: 15px;
+    background: #6b6b6b;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 0.25em;
+    text-decoration: none;
+    color: white;
+}
 
 @media only screen and (max-width: 768px) {
     .box {
