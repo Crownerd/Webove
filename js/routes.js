@@ -157,7 +157,7 @@ function fetchAndDisplayArticles(targetElm, offsetFromHash,totalCountFromHash){
     let offset = data4rendering.currPage;
 
     let x = (offset * 20) - 19
-    const url = "http://wt.kpi.fei.tuke.sk/api/article/?tag=gamedevelopment&max=20&offset=" + x;
+    const url = "https://wt.kpi.fei.tuke.sk/api/article/?tag=gamedevelopment&max=20&offset=" + x;
 
     const articlesElm = document.getElementById("router-view");
     fetch(url)
@@ -184,7 +184,7 @@ function fetchAndDisplayArticles(targetElm, offsetFromHash,totalCountFromHash){
             let prrt;
 
             let cntRequests = data4rendering.articleList.map(
-                article => fetch(`http://wt.kpi.fei.tuke.sk/api/article/${article.id}`)
+                article => fetch(`https://wt.kpi.fei.tuke.sk/api/article/${article.id}`)
             );
             return Promise.all(cntRequests);
         })
